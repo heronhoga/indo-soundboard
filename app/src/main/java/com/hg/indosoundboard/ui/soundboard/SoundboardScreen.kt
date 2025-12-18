@@ -9,20 +9,20 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.hg.indosoundboard.R
+import com.hg.indosoundboard.data.model.Sound
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SoundboardScreen() {
     val sounds = listOf(
-        "Maling Pangsit",
-        "Hidup Jokowi",
-        "Ya Ndak Tau"
+        Sound(1,"Maling Pangsit", R.raw.sound_maling_pangsit),
+        Sound(2, "Hidup Jokowi", R.raw.hidup),
+        Sound(3, "Ya Ndak Tau", R.raw.yntkts)
     )
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -39,7 +39,10 @@ fun SoundboardScreen() {
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(sounds) { sound ->
-                SoundButton(title = sound)
+                SoundButton(
+                    title = sound.name,
+                    soundResId = sound.resId
+                )
             }
         }
     }
